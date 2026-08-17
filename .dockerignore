@@ -1,0 +1,21 @@
+# 排除不需要打包的文件
+*.md
+.git
+*.log
+*.exe
+*.o
+*.a
+Dockerfile
+docs/
+tests/
+test/
+*.pyc
+__pycache__/
+.vscode/
+*.docx
+model.lp
+solu.sol
+chenhao.json
+chenhao_res.json
+.agents/
+.gitignore

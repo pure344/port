@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  sat-planning-service:
+    image: sat-planning:v1.0.0
+    container_name: sat-planning-container
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - ./results:/results
+    environment:
+      - APP_PORT=8080
+      - WORK_DIR=/results
+      
+      - TZ=Asia/Shanghai
+    # 对于纯 HTTP 计算服务，我们可以将 tmpfs 挂载到 /tmp，
+    # 这样就算有模型临时文件 model.lp 也会写在内存里，极大提高 IO 速度并保护宿主机磁盘。

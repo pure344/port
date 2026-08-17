@@ -1,0 +1,14 @@
+{
+    "task":
+    {
+        "sat_id": "satelliteId",
+        "task_id": "taskId",
+        "tgt_id": "targetId",
+        "start_time": "startTime",
+        "end_time": "endTime"
+    },
+    "tgt":
+    {
+        "tgt_id": "targetId"
+    }
+}

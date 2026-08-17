@@ -1,0 +1,137 @@
+
+  {
+    "requestsList": [
+      {
+        "zcRequestId": "ZC20260728010",
+        "requestScene": "原计划任务（受影响）",
+        "zcRequestName": "XX区域常规A",
+        "zcRequestType": "POINT_OBS",
+        "resource": "SATELLITE_CONSTELLATION_A",
+        "priority": 3,
+        "reqType": "POINT",
+        "taskStartTime": "2026-07-28 08:00:00",
+        "taskEndTime": "2026-07-28 20:00:00",
+        "responseTime": 7200,
+        "sensorMethod": "OPTICAL",
+        "resolution": "2m",
+        "reqTimes": 1,
+        "reqInterval": 0,
+        "isRawDownlink": true,
+        "isOnboardProcess": false,
+        "isOnboard": false,
+        "targetList": [
+          {
+            "targetId": "TGT-A001",
+            "targetName": "受影响目标A",
+            "targetsType": "POINT",
+            "yxj": 1,
+            "targetsPosList": [ { "lon": 121.47, "lat": 31.23 } ]
+          }
+        ]
+      },
+      {
+        "zcRequestId": "ZC20260728099",
+        "requestScene": "应急任务",
+        "zcRequestName": "紧急目标（应急）",
+        "zcRequestType": "POINT_OBS",
+        "resource": "SATELLITE_CONSTELLATION_A",
+        "priority": 1,
+        "reqType": "POINT",
+        "taskStartTime": "2026-07-28 08:00:00",
+        "taskEndTime": "2026-07-28 20:00:00",
+        "responseTime": 600,
+        "sensorMethod": "OPTICAL",
+        "resolution": "1m",
+        "reqTimes": 1,
+        "reqInterval": 0,
+        "isRawDownlink": true,
+        "isOnboardProcess": false,
+        "isOnboard": false,
+        "targetList": [
+          {
+            "targetId": "TGT-E001",
+            "targetName": "应急目标E",
+            "targetsType": "POINT",
+            "yxj": 1,
+            "targetsPosList": [ { "lon": 113.26, "lat": 23.13 } ]
+          }
+        ]
+      }
+    ],
+    "emergencyStatus": true,
+    "requestEmergencyIds": ["ZC20260728010"],
+    "metaTaskList": [
+      {
+        "taskId": "MT-A001-S1",
+        "targetId": "TGT-A001",
+        "sensor": "OPTICAL_HIGH_RES",
+        "satelliteId": "SAT-OPT-01",
+        "accessOrbitNum": 2026190,
+        "visStartTime": "2026-07-28 09:00:00",
+        "visEndTime": "2026-07-28 09:00:30",
+        "midTime": "2026-07-28 09:00:15",
+        "rollAngle": 3.0,
+        "sunElevationAngle": [ { "startAngle": 45.0, "endAngle": 47.0 } ]
+      },
+      {
+        "taskId": "MT-E001-S1",
+        "targetId": "TGT-E001",
+        "sensor": "OPTICAL_HIGH_RES",
+        "satelliteId": "SAT-OPT-01",
+        "accessOrbitNum": 2026190,
+        "visStartTime": "2026-07-28 09:00:00",
+        "visEndTime": "2026-07-28 09:00:30",
+        "midTime": "2026-07-28 09:00:15",
+        "rollAngle": -2.0,
+        "sunElevationAngle": [ { "startAngle": 45.0, "endAngle": 47.0 } ]
+      },
+      {
+        "taskId": "MT-E001-S2",
+        "targetId": "TGT-E001",
+        "sensor": "OPTICAL_HIGH_RES",
+        "satelliteId": "SAT-OPT-02",
+        "accessOrbitNum": 2026190,
+        "visStartTime": "2026-07-28 11:00:00",
+        "visEndTime": "2026-07-28 11:00:30",
+        "midTime": "2026-07-28 11:00:15",
+        "rollAngle": 6.0,
+        "sunElevationAngle": [ { "startAngle": 55.0, "endAngle": 57.0 } ]
+      }
+    ],
+    "transWindowList": [
+      {
+        "windowId": "TW-EM-01",
+        "sidBId": "SAT-OPT-01",
+        "sidAId": "GS-BEIJING",
+        "type": "HR+R",
+        "startTime": "2026-07-28 08:30:00",
+        "endTime": "2026-07-28 08:45:00"
+      },
+      {
+        "windowId": "TW-EM-02",
+        "sidBId": "SAT-OPT-01",
+        "sidAId": "GS-BEIJING",
+        "type": "R",
+        "startTime": "2026-07-28 09:30:00",
+        "endTime": "2026-07-28 09:50:00"
+      },
+      {
+        "windowId": "TW-EM-03",
+        "sidBId": "SAT-OPT-02",
+        "sidAId": "GS-KASHGAR",
+        "type": "HR+R",
+        "startTime": "2026-07-28 10:30:00",
+        "endTime": "2026-07-28 10:45:00"
+      },
+      {
+        "windowId": "TW-EM-04",
+        "sidBId": "SAT-OPT-02",
+        "sidAId": "GS-KASHGAR",
+        "type": "R",
+        "startTime": "2026-07-28 11:30:00",
+        "endTime": "2026-07-28 11:50:00"
+      }
+    ],
+    "routingTableList": [],
+    "receiveTime": "2026-07-28 07:55:00"
+  }

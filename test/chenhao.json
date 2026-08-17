@@ -1,0 +1,110 @@
+{
+  "receiveTime": "2026-06-27 05:00:00",
+  "requestsList": 
+  [
+    {
+    "zcRequestId": "REQ_20260627_01",
+    "responseTime":600,
+    "priority":1,
+    "taskStartTime":"",
+    "taskEndTime":"",
+    "reqTimes": 3,
+    "reqInterval":1,
+    "targetList": [
+      { 
+        "targetId": "TGT_A",
+        "yxj":1
+      },
+      { 
+        "targetId": "TGT_B",
+        "yxj":2
+       }
+    ],
+    "isRawDownload": false,
+    "isOnboardProcess": true,
+    "isOnboard": false
+    }
+  ],
+  "requestsSupply": {
+    "requestsList": {
+      "zcRequestId": "REQ_20260627_01",
+      "responseTime":600,
+      "priority":1,
+      "taskStartTime":"",
+      "taskEndTime":"",
+      "reqTimes": 3,
+      "reqInterval":1,
+      "targetList": [
+        { 
+          "targetId": "TGT_A",
+          "yxj":1
+        },
+        { 
+          "targetId": "TGT_B",
+          "yxj":2
+        }
+      ],
+      "isRawDownload": false,
+      "isOnboardProcess": true,
+      "isOnboard": false
+    },
+    "satelliteVisibleWindows":{
+        
+    },
+    "clusterConfig": {
+      "mainSat": "",
+      "clusterMember":"",
+      "clusterStartTime":"",
+      "clusterEndTime":"",
+      "satelliteSet": []
+    }
+  },
+  "metaTaskList": [
+    {
+      "taskId": "META_01",
+      "targetId": "TGT_A",
+      "zcRequestId":"REQ_20260627_01",
+      "satelliteId": "SAT_01",
+      "visStartTime": "2026-06-27 06:00:00",
+      "visEndTime": "2026-06-27 06:00:10",
+      "rollAngle": 15.5
+    },
+    {
+      "taskId": "META_02",
+      "targetId": "TGT_B",
+      "zcRequestId":"REQ_20260627_01",
+      "satelliteId": "SAT_02",
+      "visStartTime": "2026-06-27 06:00:20",
+      "visEndTime": "2026-06-27 06:00:30",
+      "rollAngle": 0.0
+    }
+  ],
+  "transWindowList": [
+    {
+      "windowId": "WIN_01",
+      "sidAId": "GROUND_01",
+      "sidBId": "SAT_01",
+      "type": "HR",
+      "startTime": "2026-06-27 06:00:00",
+      "endTime": "2026-06-27 07:00:00"
+    }
+  ],
+  "routingTableList": [
+    {
+      "id": "ROUTE_01",
+      "satelliteId": "SAT_01",
+      "desSatellited": "SAT_02",
+      "startTime": "2026-06-27 06:00:00",
+      "endTime": "2026-06-27 07:00:00",
+      "type":"HR",
+      "speed":1000
+    }
+  ],
+  "emergencyTasks": [
+    {
+      
+    }
+  ],
+  "emergencyStatus": false,
+  "requestsEmergencyIds": []
+}
