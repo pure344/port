@@ -17,6 +17,8 @@
 #      - 根据 isOnboardProcess 标识决定是否在轨直接处理。记录计算量及处理时延。
 #    - planingReceiveEntityList (数据下传接收方案):
 #      - 依赖 s2gt 时间戳，生成地面站接收计划，确保与地面站过境可见窗口严密耦合。
+#    - planingDistributeEntityList (数据分发方案):
+#      - 数传完成后的数据产品地面分发计划，记录分发任务 ID、分发起始时间、标准需求单号与目标用户。
 #    - planingControlEntityList (星地测控方案):
 #      - 提取 tc_SAT 时间戳，聚合分配该卫星下所有的测控需求。
 #    - planingEntityList (星间建链方案):
@@ -40,6 +42,7 @@ import time
 from constants import (
     OBSERVATION_DEFAULT_DURATION,
     DEFAULT_TTC_DURATION,
+    DEFAULT_DISTRIBUTE_DELAY,
     DEFAULT_PROCESS_RATE,
     DEFAULT_TRANSMISSION_RATE,
     BINARIZATION_THRESHOLD,
@@ -95,6 +98,7 @@ class ScheduleGenerator:
             "planingEntityList": [],
             "planingSatDealEntityList": [],
             "planingControlEntityList": [],
+            "planingDistributeEntityList": [],
             "metrics": {}
         }
         sat_task_id = {}
@@ -231,6 +235,16 @@ class ScheduleGenerator:
                     "dataTransMode": "real-time",
                     "resource": res_src,
                 })
+
+            dist_start_ts = end_trans_time + DEFAULT_DISTRIBUTE_DELAY
+            dist_start_str = datetime.fromtimestamp(dist_start_ts).strftime("%Y-%m-%d %H:%M:%S")
+
+            schedule["planingDistributeEntityList"].append({
+                "distTaskId": f"dist_{raw_task_id}",
+                "distributeStartTime": dist_start_str,
+                "standardRequestId": req_id,
+                "userId": "地面中心"
+            })
 
         for clean_sat_id, task_ids in sat_task_id.items():
             # 获取该卫星算出的实际上注时间 tc_time
@@ -554,6 +568,9 @@ class ScheduleGenerator:
             
         if "planingEntityList" in schedule:
             schedule["planingEntityList"].sort(key=lambda x: x.get("linkStartTime", ""))
+
+        if "planingDistributeEntityList" in schedule:
+            schedule["planingDistributeEntityList"].sort(key=lambda x: x.get("distributeStartTime", ""))
 
         return schedule
 
