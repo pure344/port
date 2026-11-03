@@ -1,5 +1,7 @@
 /.vscode
 /__pycache__
-provide/*
-星间DDS数据架构1016/*
+/provide/*
+/星间DDS数据架构1016/*
 /cbc.exe
+/bin/*
+/test/*

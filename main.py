@@ -24,8 +24,8 @@ logging.basicConfig(
 
 # APP_PORT: 服务监听的端口号，默认 8080，适配 Docker 容器环境
 port = int(os.environ.get('APP_PORT', 8080))
-# WORK_DIR: 工作目录，用于存放过程日志文件，默认当前目录
-path = os.environ.get('WORK_DIR', './')
+# WORK_DIR: 工作目录，用于存放过程临时文件，默认当前代码所在目录
+path = os.environ.get('WORK_DIR', os.path.dirname(os.path.abspath(__file__)))
 # RUN_MODE: 运行模式，为了兼容历史逻辑保留，现已全面转为 server 模式
 local = os.environ.get('RUN_MODE', 'server') == 'local'
 

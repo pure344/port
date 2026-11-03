@@ -1,137 +1,406 @@
-
-  {
-    "requestsList": [
-      {
-        "zcRequestId": "ZC20260728010",
-        "requestScene": "原计划任务（受影响）",
-        "zcRequestName": "XX区域常规A",
-        "zcRequestType": "POINT_OBS",
-        "resource": "SATELLITE_CONSTELLATION_A",
-        "priority": 3,
-        "reqType": "POINT",
-        "taskStartTime": "2026-07-28 08:00:00",
-        "taskEndTime": "2026-07-28 20:00:00",
-        "responseTime": 7200,
-        "sensorMethod": "OPTICAL",
-        "resolution": "2m",
-        "reqTimes": 1,
-        "reqInterval": 0,
-        "isRawDownlink": true,
-        "isOnboardProcess": false,
-        "isOnboard": false,
-        "targetList": [
+{
+  "dataname": {
+    "validData": {
+      "sourceNode": {
+        "value": 0,
+        "type": "uint32",
+        "desc": "需求来源节点；本条侦察需求来源节点：可选值：0(地面需求)、1(主星临机需求)"
+      },
+      "targetNode": {
+        "value": 1,
+        "type": "uint32",
+        "desc": "需求目标节点；本条侦察需求目的节点：可选值：0(地面作战管理系统)、1(规划主星)"
+      },
+      "timestamp": {
+        "value": "2024-01-01T00:00:00.000Z",
+        "type": "string",
+        "desc": "时间标识；UTC时间，以时间码格式2024-01-01T00:00:00.000Z表示，标明本条数据对应时间戳"
+      },
+      "zcRequestId": {
+        "value": "REQ-ZC-GROUND-20260901-1",
+        "type": "string",
+        "desc": "需求ID；用于标识需求的唯一标识符，按照“REQ-ZC-GROUND/SATE(需求来源)-yyyymmdd（需求产生日期）-编号（从1开始递增）”格式"
+      },
+      "priority": {
+        "value": 1,
+        "type": "uint8",
+        "desc": "需求优先级；需求优先级，取值范围1-100，数值越小，优先级越高"
+      },
+      "taskStartTime": {
+        "value": "2024-01-01T00:00:00.000Z",
+        "type": "string",
+        "desc": "任务最早开始时间；该条需求最早开始执行的时间。UTC时间，以时间码格式2024-01-01T00:00:00.000Z表示"
+      },
+      "taskEndTime": {
+        "value": "2024-01-01T00:00:00.000Z",
+        "type": "string",
+        "desc": "任务最晚结束时间；该条需求最晚结束执行的时间。UTC时间，以时间码格式2024-01-01T00:00:00.000Z表示"
+      },
+      "pointTargetCnt": {
+        "value": 3,
+        "type": "uint32",
+        "desc": "待侦察点数量；待侦察点的数量N"
+      },
+      "pointTargetPos": {
+        "value": [
           {
-            "targetId": "TGT-A001",
-            "targetName": "受影响目标A",
-            "targetsType": "POINT",
-            "yxj": 1,
-            "targetsPosList": [ { "lon": 121.47, "lat": 31.23 } ]
-          }
-        ]
-      },
-      {
-        "zcRequestId": "ZC20260728099",
-        "requestScene": "应急任务",
-        "zcRequestName": "紧急目标（应急）",
-        "zcRequestType": "POINT_OBS",
-        "resource": "SATELLITE_CONSTELLATION_A",
-        "priority": 1,
-        "reqType": "POINT",
-        "taskStartTime": "2026-07-28 08:00:00",
-        "taskEndTime": "2026-07-28 20:00:00",
-        "responseTime": 600,
-        "sensorMethod": "OPTICAL",
-        "resolution": "1m",
-        "reqTimes": 1,
-        "reqInterval": 0,
-        "isRawDownlink": true,
-        "isOnboardProcess": false,
-        "isOnboard": false,
-        "targetList": [
+            "targetId": "PT-1",
+            "lon": 128.451,
+            "lat": 51.169,
+            "alt": 30
+          },
           {
-            "targetId": "TGT-E001",
-            "targetName": "应急目标E",
-            "targetsType": "POINT",
-            "yxj": 1,
-            "targetsPosList": [ { "lon": 113.26, "lat": 23.13 } ]
+            "targetId": "PT-2",
+            "lon": 131.817,
+            "lat": 43.114,
+            "alt": 30
+          },
+          {
+            "targetId": "PT-3",
+            "lon": 128.166,
+            "lat": 40.025,
+            "alt": 30
           }
-        ]
+        ],
+        "type": "array",
+        "desc": "待侦察点坐标；各侦察点的经纬高坐标列表，每个侦察点的经纬高按照{“targetId”:“PT-x”, “lon”:xx, “lat”:xx, “alt”:xx}json对象格式填写，一个json对象对应一个侦察点。列表长度等于侦察点数量N；侦察点ID按照“PT-x”格式；遵循CGCS2000坐标系，经纬度为double类型，单位deg，东经北纬为正；高度为float类型，单位为m"
+      },
+      "pointTargetType": {
+        "value": [
+          "Civilship",
+          "Carrier",
+          "Unknown"
+        ],
+        "type": "array",
+        "desc": "待侦察点类型列表；描述侦察点类型，包括：Civilship舰船、Carrier航母、MissileLauncher导弹发射车、Unknown未知。以数组形式包含多个侦察点类型信息；数组元素类型：string"
+      },
+      "pointTargetPriority": {
+        "value": [
+          1,
+          2,
+          3
+        ],
+        "type": "array",
+        "desc": "待侦察点优先级列表；表征各个侦察点的优先级，取值范围1-100，数值越小，优先级越高；数组元素类型：uint8"
+      },
+      "pointTargetPayload": {
+        "value": [
+          "Panchromatic",
+          "Infrared",
+          "SAR"
+        ],
+        "type": "array",
+        "desc": "待侦察点载荷偏好列表；表征各个待侦察点优先选用的载荷类型，可选值：Panchromatic(全色),Infrared(红外),Multispectral(多光谱),Hyperspectral(高光谱), SAR, Electronic(电侦), Radar(雷达)；数组元素类型：string"
+      },
+      "areaTargetCnt": {
+        "value": 2,
+        "type": "uint32",
+        "desc": "待侦察区域数量；待侦察区域数量M"
+      },
+      "areaPot1Pos": {
+        "value": [
+          {
+            "areaId": "AT-1",
+            "lon": 131.817,
+            "lat": 43.114,
+            "alt": 30
+          },
+          {
+            "areaId": "AT-2",
+            "lon": 128.166,
+            "lat": 40.025,
+            "alt": 30
+          }
+        ],
+        "type": "array",
+        "desc": "待侦察区域顶点1坐标；待侦察区域顶点1的经纬高坐标列表，每个顶点的经纬高按照{“areaId”:“AT-x”, “lon”:xx, “lat”:xx, “alt”:xx}json对象格式填写，一个json对象对应一个侦察区域顶点。列表长度等于侦察区域数量N；侦察区域ID按照“AT-x”格式；遵循CGCS2000坐标系，经纬度为double类型，单位deg，东经北纬为正；高度为float类型，单位为m"
+      },
+      "areaPot2Pos": {
+        "value": [
+          {
+            "areaId": "AT-1",
+            "lon": 131.817,
+            "lat": 43.114,
+            "alt": 30
+          },
+          {
+            "areaId": "AT-2",
+            "lon": 128.166,
+            "lat": 40.025,
+            "alt": 30
+          }
+        ],
+        "type": "array",
+        "desc": "待侦察区域顶点2坐标；待侦察区域顶点1的经纬高坐标列表，每个顶点的经纬高按照{“areaId”:“AT-x”, “lon”:xx, “lat”:xx, “alt”:xx}json对象格式填写，一个json对象对应一个侦察区域顶点。列表长度等于侦察区域数量N；侦察区域ID按照“AT-x”格式；遵循CGCS2000坐标系，经纬度为double类型，单位deg，东经北纬为正；高度为float类型，单位为m"
+      },
+      "areaPot3Pos": {
+        "value": [
+          {
+            "areaId": "AT-1",
+            "lon": 131.817,
+            "lat": 43.114,
+            "alt": 30
+          },
+          {
+            "areaId": "AT-2",
+            "lon": 128.166,
+            "lat": 40.025,
+            "alt": 30
+          }
+        ],
+        "type": "array",
+        "desc": "待侦察区域顶点3坐标；待侦察区域顶点1的经纬高坐标列表，每个顶点的经纬高按照{“areaId”:“AT-x”, “lon”:xx, “lat”:xx, “alt”:xx}json对象格式填写，一个json对象对应一个侦察区域顶点。列表长度等于侦察区域数量N；侦察区域ID按照“AT-x”格式；遵循CGCS2000坐标系，经纬度为double类型，单位deg，东经北纬为正；高度为float类型，单位为m"
+      },
+      "areaPot4Pos": {
+        "value": [
+          {
+            "areaId": "AT-1",
+            "lon": 131.817,
+            "lat": 43.114,
+            "alt": 30
+          },
+          {
+            "areaId": "AT-2",
+            "lon": 128.166,
+            "lat": 40.025,
+            "alt": 30
+          }
+        ],
+        "type": "array",
+        "desc": "待侦察区域顶点4坐标；待侦察区域顶点1的经纬高坐标列表，每个顶点的经纬高按照{“areaId”:“AT-x”, “lon”:xx, “lat”:xx, “alt”:xx}json对象格式填写，一个json对象对应一个侦察区域顶点。列表长度等于侦察区域数量N；侦察区域ID按照“AT-x”格式；遵循CGCS2000坐标系，经纬度为double类型，单位deg，东经北纬为正；高度为float类型，单位为m"
+      },
+      "areaTargetType": {
+        "value": [
+          "Island",
+          "City",
+          "Unknown"
+        ],
+        "type": "array",
+        "desc": "待侦察区域类型列表；描述待侦察区域类型，包括：Island岛屿、Port港口、City城市、Unknown未知。以数组形式包含多个区域目标类型信息；数组元素类型：string"
+      },
+      "areaTargetPriority": {
+        "value": [
+          1,
+          2,
+          3
+        ],
+        "type": "array",
+        "desc": "待侦察区域优先级列表；表征各个侦察区域的优先级，取值范围1-100，数值越小，优先级越高；数组元素类型：uint8"
+      },
+      "areaTargetPayload": {
+        "value": [
+          "Panchromatic",
+          "Infrared",
+          "Multispectral"
+        ],
+        "type": "array",
+        "desc": "待侦察区域载荷偏好列表；表征各个待侦察区域优先选用的载荷类型，可选值：Panchromatic(全色),Infrared(红外),Multispectral(多光谱),Hyperspectral(高光谱), SAR, Electronic(电侦), Radar(雷达)；数组元素类型：string"
       }
-    ],
-    "emergencyStatus": true,
-    "requestEmergencyIds": ["ZC20260728010"],
-    "metaTaskList": [
-      {
-        "taskId": "MT-A001-S1",
-        "targetId": "TGT-A001",
-        "sensor": "OPTICAL_HIGH_RES",
-        "satelliteId": "SAT-OPT-01",
-        "accessOrbitNum": 2026190,
-        "visStartTime": "2026-07-28 09:00:00",
-        "visEndTime": "2026-07-28 09:00:30",
-        "midTime": "2026-07-28 09:00:15",
-        "rollAngle": 3.0,
-        "sunElevationAngle": [ { "startAngle": 45.0, "endAngle": 47.0 } ]
+    },
+    "metadata": {
+      "coreSet": {
+        "dataType": {
+          "applyScope": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "firstType": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "subType": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          }
+        },
+        "manageInfo": {
+          "dataID": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "summary": {
+            "value": "侦察需求数据",
+            "type": "string",
+            "desc": ""
+          },
+          "dataLevel": {
+            "value": 0,
+            "type": "int",
+            "desc": ""
+          },
+          "version": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "format": {
+            "value": "JSON",
+            "type": "string",
+            "desc": ""
+          },
+          "encoding": {
+            "value": "UTF-8",
+            "type": "string",
+            "desc": ""
+          },
+          "creator": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          }
+        },
+        "storageInfo": {
+          "storageType": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "storageLocal": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "storagePath": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "msgSize": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          }
+        },
+        "accessProtocol": {
+          "ftpAddr": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "smbAddr": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          }
+        },
+        "DDS": {
+          "domain": {
+            "value": "侦察任务域",
+            "type": "string",
+            "desc": ""
+          },
+          "topic": {
+            "value": "ZC_REQ_TOPIC",
+            "type": "string",
+            "desc": ""
+          },
+          "QoS": {
+            "value": "可靠传输",
+            "type": "string",
+            "desc": ""
+          },
+          "publisher": {
+            "value": "地面管理",
+            "type": "string",
+            "desc": ""
+          },
+          "subscriber": {
+            "value": "原型卫星",
+            "type": "string",
+            "desc": ""
+          },
+          "frequency": {
+            "value": "事件",
+            "type": "string",
+            "desc": ""
+          }
+        },
+        "timeInfo": {
+          "createTime": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "validTimeFrom": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "validTimeTo": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          },
+          "timeFormat": {
+            "value": "",
+            "type": "string",
+            "desc": ""
+          }
+        }
       },
-      {
-        "taskId": "MT-E001-S1",
-        "targetId": "TGT-E001",
-        "sensor": "OPTICAL_HIGH_RES",
-        "satelliteId": "SAT-OPT-01",
-        "accessOrbitNum": 2026190,
-        "visStartTime": "2026-07-28 09:00:00",
-        "visEndTime": "2026-07-28 09:00:30",
-        "midTime": "2026-07-28 09:00:15",
-        "rollAngle": -2.0,
-        "sunElevationAngle": [ { "startAngle": 45.0, "endAngle": 47.0 } ]
-      },
-      {
-        "taskId": "MT-E001-S2",
-        "targetId": "TGT-E001",
-        "sensor": "OPTICAL_HIGH_RES",
-        "satelliteId": "SAT-OPT-02",
-        "accessOrbitNum": 2026190,
-        "visStartTime": "2026-07-28 11:00:00",
-        "visEndTime": "2026-07-28 11:00:30",
-        "midTime": "2026-07-28 11:00:15",
-        "rollAngle": 6.0,
-        "sunElevationAngle": [ { "startAngle": 55.0, "endAngle": 57.0 } ]
-      }
-    ],
-    "transWindowList": [
-      {
-        "windowId": "TW-EM-01",
-        "sidBId": "SAT-OPT-01",
-        "sidAId": "GS-BEIJING",
-        "type": "HR+R",
-        "startTime": "2026-07-28 08:30:00",
-        "endTime": "2026-07-28 08:45:00"
-      },
-      {
-        "windowId": "TW-EM-02",
-        "sidBId": "SAT-OPT-01",
-        "sidAId": "GS-BEIJING",
-        "type": "R",
-        "startTime": "2026-07-28 09:30:00",
-        "endTime": "2026-07-28 09:50:00"
-      },
-      {
-        "windowId": "TW-EM-03",
-        "sidBId": "SAT-OPT-02",
-        "sidAId": "GS-KASHGAR",
-        "type": "HR+R",
-        "startTime": "2026-07-28 10:30:00",
-        "endTime": "2026-07-28 10:45:00"
-      },
-      {
-        "windowId": "TW-EM-04",
-        "sidBId": "SAT-OPT-02",
-        "sidAId": "GS-KASHGAR",
-        "type": "R",
-        "startTime": "2026-07-28 11:30:00",
-        "endTime": "2026-07-28 11:50:00"
-      }
-    ],
-    "routingTableList": [],
-    "receiveTime": "2026-07-28 07:55:00"
-  }
+      "extensionSet": {}
+    }
+  },
+  "metaTaskList": [
+    {
+      "taskId": "MT-SAT1-PT1",
+      "targetId": "PT-1",
+      "satelliteId": "SAT_1",
+      "SCID": 1,
+      "visStartTime": "2024-01-01T00:05:00.000Z",
+      "visEndTime": "2024-01-01T00:05:10.000Z",
+      "rollAngle": 12.5
+    },
+    {
+      "taskId": "MT-SAT1-PT2",
+      "targetId": "PT-2",
+      "satelliteId": "SAT_1",
+      "SCID": 1,
+      "visStartTime": "2024-01-01T00:08:00.000Z",
+      "visEndTime": "2024-01-01T00:08:10.000Z",
+      "rollAngle": -8.0
+    },
+    {
+      "taskId": "MT-SAT2-PT3",
+      "targetId": "PT-3",
+      "satelliteId": "SAT_2",
+      "SCID": 2,
+      "visStartTime": "2024-01-01T00:15:00.000Z",
+      "visEndTime": "2024-01-01T00:15:10.000Z",
+      "rollAngle": 5.0
+    },
+    {
+      "taskId": "MT-SAT2-AT1",
+      "targetId": "AT-1",
+      "satelliteId": "SAT_2",
+      "SCID": 2,
+      "visStartTime": "2024-01-01T00:20:00.000Z",
+      "visEndTime": "2024-01-01T00:20:10.000Z",
+      "rollAngle": 0.0
+    }
+  ],
+  "transWindowList": [
+    {
+      "windowId": "TW-GS1",
+      "satelliteId": "SAT_1",
+      "SCID": 1,
+      "sidAId": "GS-BEIJING",
+      "type": "HR+R",
+      "startTime": "2024-01-01T00:02:00.000Z",
+      "endTime": "2024-01-01T00:30:00.000Z"
+    },
+    {
+      "windowId": "TW-GS2",
+      "satelliteId": "SAT_2",
+      "SCID": 2,
+      "sidAId": "GS-KASHGAR",
+      "type": "HR+R",
+      "startTime": "2024-01-01T00:10:00.000Z",
+      "endTime": "2024-01-01T00:40:00.000Z"
+    }
+  ]
+}
