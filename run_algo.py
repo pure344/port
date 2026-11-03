@@ -27,8 +27,8 @@ def run(data, save_path):
     执行步骤:
         1. 预处理：解析外部输入并转换为内部数据结构
         2. 建模：构建 MILP(混合整数线性规划) 模型并输出为 model.lp
-        3. 求解：跨平台调用 CBC 求解器对模型文件进行求解，并输出 solu.sol
-        4. 后处理：读取 solu.sol 解析结果，生成具体的数传、测控与观测方案
+        3. 求解：跨平台调用 CBC 求解器对模型文件进行求解，并输出 soln.sol
+        4. 后处理：读取 soln.sol 解析结果，生成具体的数传、测控与观测方案
     """
     start_algo_time = time.time()  # 记录算法入口起点时刻
 
@@ -41,7 +41,7 @@ def run(data, save_path):
 
     logging.info("Model building...")
     lp_file = os.path.join(save_path, 'model.lp')
-    sol_file = os.path.join(save_path, 'solu.sol')
+    sol_file = os.path.join(save_path, 'soln.sol')
     ModelBuilder(input_data, input_mapping, lp_file)
     logging.info("Model(MILP) build successfully")
 
@@ -61,7 +61,7 @@ def run(data, save_path):
         cbc_exe = shutil.which("cbc") or "cbc"
 
     try:
-        # 执行命令: cbc model.lp solve solu solu.sol
+        # 执行命令: cbc model.lp solve soln soln.sol
         subprocess.run([cbc_exe, lp_file, "solve", "solu", sol_file], check=True)
     except Exception as e:
         err_log = f"Error calling CBC solver. Is cbc.exe in the folder? Detail: {e}"
@@ -78,6 +78,6 @@ def run(data, save_path):
         # if os.path.exists(lp_file): os.remove(lp_file)
         return res_data
     else:
-        err_log = "Solving failed! solu.sol was not generated."
+        err_log = "Solving failed! soln.sol was not generated."
         logging.error(err_log)
         return err_log

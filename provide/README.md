@@ -37,6 +37,7 @@ docker load -i sat-planning_v1.0.0_arm64.tar
 # 在包含 docker-compose.yml 的目录下执行
 docker-compose up -d
 ```
+
 *(如果目标机器未安装 docker-compose，也可使用原生命令启动：`docker run -d --name sat-planning -p 8080:8080 --tmpfs /tmp --restart=always sat-planning:v1.0.0`)*
 
 ---
