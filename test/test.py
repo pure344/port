@@ -8,7 +8,6 @@ import json
 import os
 import sys
 import time
-import urllib.request
 
 # 将上级目录加入 sys.path，以便直接调用 run_algo
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -36,32 +35,10 @@ def test_file(file_path: str, mode_name: str = None) -> bool:
     with open(file_path, 'r', encoding='utf-8') as f:
         payload = json.load(f)
 
-    # 1. 优先尝试通过 HTTP 接口测试 (若服务在线)
-    url = 'http://127.0.0.1:8080'
-    server_online = False
-    try:
-        req = urllib.request.Request(
-            url,
-            data=json.dumps(payload, ensure_ascii=False).encode('utf-8'),
-            headers={'Content-Type': 'application/json'},
-            method='POST'
-        )
-        with urllib.request.urlopen(req, timeout=3) as resp:
-            res_text = resp.read().decode('utf-8')
-            res_json = json.loads(res_text)
-            print(f"[HTTP 接口在线] 收到 HTTP {resp.status} 响应！")
-            server_online = True
-    except Exception:
-        pass
-
-    # 2. 若 HTTP 服务未启动，直接调用算法内核求解
-    if not server_online:
-        print("[HTTP 服务未运行，直接调用算法内核求解]...")
-        t_start = time.time()
-        res_json = run(payload, current_dir)
-        duration = round(time.time() - t_start, 3)
-    else:
-        duration = "-"
+    # 调用算法内核进行规划求解
+    t_start = time.time()
+    res_json = run(payload, current_dir)
+    duration = round(time.time() - t_start, 3)
 
     if not isinstance(res_json, dict) or "metrics" not in res_json:
         print(f"[ERROR] 规划求解失败: {res_json}")

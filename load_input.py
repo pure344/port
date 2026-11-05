@@ -13,7 +13,8 @@ from constants import (
     parse_time_to_ts,
     format_ts_to_iso,
     WARNING_PRIORITY_MULTIPLIER,
-    OBSERVATION_DEFAULT_DURATION
+    OBSERVATION_DEFAULT_DURATION,
+    DEFAULT_SAT_CONSTRAINTS
 )
 
 def to_scid(val: Any) -> int:
@@ -261,11 +262,8 @@ class InputLoader:
             "slew_rate": 3.0
         }
 
-        # 尝试读取本地 constraint.json 增强
-        try:
-            cons = json.load(open('./config/constraint.json', 'r', encoding='utf-8'))
-        except Exception:
-            cons = {}
+        # 默认卫星能力分级配置
+        cons = DEFAULT_SAT_CONSTRAINTS
 
         if static_configs:
             for cfg in static_configs:

@@ -42,6 +42,24 @@ DEFAULT_TRANSMISSION_RATE = 2.0
 # 预警任务高优放大倍数 (确保优先打断常规任务并完成接力)
 WARNING_PRIORITY_MULTIPLIER = 100000.0
 
+# 默认卫星能力分级配置 (原 config/constraint.json 内容内聚)
+DEFAULT_SAT_CONSTRAINTS = {
+    "middle": {
+        "tc_duration": 1,
+        "process_rate": 0.5,
+        "transmission_rate": 4.0,
+        "max_uptime": 60,
+        "energy_capacity": 600.0
+    },
+    "low": {
+        "tc_duration": 1,
+        "process_rate": 1.0,
+        "transmission_rate": 2.0,
+        "max_uptime": 60,
+        "energy_capacity": 600.0
+    }
+}
+
 # ------------------------------------------------------------------------------
 # 3. 算法与数学模型相关常量
 # ------------------------------------------------------------------------------
@@ -62,10 +80,18 @@ DDS_DOMAINS = {
     "WARNING": {"name": "预警任务域", "id": 5}
 }
 
+DDS_DOMAIN_SINSATE = 1  # 单星数据域
+DDS_DOMAIN_NETWORK = 2  # 网络域
+DDS_DOMAIN_GLOBAL  = 3  # 全局数据域
+DDS_DOMAIN_RECON   = 4  # 侦察任务域
+DDS_DOMAIN_WARNING = 5  # 预警任务域
+
 TOPIC_ZC_REQ = "ZC_REQ_TOPIC"
 TOPIC_ZC_TASK_ASSIGN = "ZC_TASK_ASSIGN_TOPIC"
+TOPIC_ZC_TASK_RESPONSE = "ZC_TASK_RESPONSE_TOPIC"
 TOPIC_TARGET_GUIDE = "TARGET_GUIDE_TOPIC"
 TOPIC_YJ_TASK_ASSIGN = "YJ_TASK_ASSIGN_TOPIC"
+TOPIC_YJ_TASK_RESPONSE = "YJ_TASK_RESPONSE_TOPIC"
 TOPIC_SINSATE_COMMAND = "SINSATE_COMMAND_TOPIC"
 
 # ------------------------------------------------------------------------------

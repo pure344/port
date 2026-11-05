@@ -4,15 +4,14 @@ services:
   sat-planning-service:
     image: sat-planning:v1.0.0
     container_name: sat-planning-container
-    ports:
-      - "8080:8080"
+    # 采用 host 网络模式，使容器直接接入宿主机网卡，参与星间/星地 DDS 组播发现与实时通信
+    network_mode: host
     restart: always
     volumes:
       - ./results:/results
     environment:
-      - APP_PORT=8080
       - WORK_DIR=/results
-      
       - TZ=Asia/Shanghai
-    # 对于纯 HTTP 计算服务，我们可以将 tmpfs 挂载到 /tmp，
-    # 这样就算有模型临时文件 model.lp 也会写在内存里，极大提高 IO 速度并保护宿主机磁盘。
+    # 挂载内存临时文件系统，使 MILP 建模过程文件直接写入内存，避免磁盘 IO 损耗
+    tmpfs:
+      - /tmp:rw,size=128m
